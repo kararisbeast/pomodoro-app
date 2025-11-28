@@ -7,8 +7,9 @@ import json
 data = {
     "work_duration": 25,
     "break_duration": 5,
-    "window_size": "500x400",
     "dark_mode": True,
+    "window_x": 100,
+    "window_y": 100,
 }
 
 
