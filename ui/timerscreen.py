@@ -2,23 +2,28 @@
 """Mujtaba's script."""
 
 from tkinter import *
+
 #this tha window brah
 
 window = Tk() #create window object
 window.geometry("300x140")
 window.title("Timer Screen")
 
-# this is the title
+# frames
+main_frame=Frame(window)
+settings_frame=Frame(window)
 
-statusLabel= Label(window, text="working..", font=("Arial", 11))
+main_frame.pack(fill="both", expand=True)
+
+# main screen
+
+statusLabel= Label(main_frame, text="working..", font=("Arial", 11))
 statusLabel.pack()
 
-textLabel = Label(window, text="10:34", font=("Arial", 50, "bold"))
+textLabel = Label(main_frame, text="10:34", font=("Arial", 50, "bold"))
 textLabel.pack()
 
-# this is the buttons
-
-button_frame = Frame(window)
+button_frame = Frame(main_frame)
 button_frame.pack()
 
 def startTimer():
@@ -33,12 +38,26 @@ startButton.grid(row=0, column=0, padx=10)
 stopTimer = Button(button_frame, text="Stop", command=stopTimer)
 stopTimer.grid(row=0, column=1, padx=10)
 
-#this is the settings button
-
+# the switch to settings
 def settings():
-    print("settings entered")
+    main_frame.pack_forget()
+    settings_frame.pack(fill="both", expand=True)
+
+def go_back():
+    settings_frame.pack_forget()
+    main_frame.pack(fill="both", expand=True)
+
+#prevent widget duplication
+for widget in settings_frame.winfo_children():
+    widget.destroy()
+
+#new widgets
+Label(settings_frame, text = "Settings Menu", font=("Arial", 12, "bold")).pack(pady=10)
+Button(settings_frame, text="back", command=go_back).pack(pady=5)
+
 
 settingsButton = Button(window, text="⚙", font=("Segoe UI Symbol", 10, "bold"), command=settings)
 settingsButton.place(relx=.97, anchor="ne")
+
 
 window.mainloop() #place window on computer screen, listen for events
