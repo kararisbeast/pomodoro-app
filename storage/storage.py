@@ -1,11 +1,7 @@
 " This script is responsible for saving and loading the preferences such as, work duration, break duration, window size, and darkmode." 
 " Karars Script "
 
-
 import json
-
-
-
 
 # This array holds the data that will be used by timerlogic.py and timerscreen.py
 data = {
@@ -14,8 +10,6 @@ data = {
     "window_size": "500x400",
     "light_mode": True,
 }
-
-
 
 
 def LoadData():
@@ -35,7 +29,6 @@ def SaveData():
     global data
     with open("save_file.json", "w") as f:
         json.dump(data, f, indent=4)  # saves your data as JSON
-
 
 
 
