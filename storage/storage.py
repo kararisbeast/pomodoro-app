@@ -8,7 +8,7 @@ data = {
     "work_duration": 25,
     "break_duration": 5,
     "window_size": "500x400",
-    "light_mode": True,
+    "dark_mode": True,
 }
 
 

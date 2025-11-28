@@ -39,6 +39,6 @@ def settings():
     print("settings entered")
 
 settingsButton = Button(window, text="⚙", font=("Segoe UI Symbol", 10, "bold"), command=settings)
-settingsButton.place(x=260, y = 5)
+settingsButton.place(relx=.97, anchor="ne")
 
 window.mainloop() #place window on computer screen, listen for events
