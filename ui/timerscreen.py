@@ -12,6 +12,7 @@ window.title("Timer Screen")
 # frames
 main_frame=Frame(window)
 settings_frame=Frame(window)
+dark_mode_var = BooleanVar()
 
 main_frame.pack(fill="both", expand=True)
 
@@ -20,7 +21,7 @@ main_frame.pack(fill="both", expand=True)
 statusLabel= Label(main_frame, text="working..", font=("Arial", 11))
 statusLabel.pack()
 
-textLabel = Label(main_frame, text="10:34", font=("Arial", 50, "bold"))
+textLabel = Label(main_frame, text="20", font=("Arial", 50, "bold"))
 textLabel.pack()
 
 button_frame = Frame(main_frame)
@@ -51,9 +52,56 @@ def go_back():
 for widget in settings_frame.winfo_children():
     widget.destroy()
 
-#new widgets
-Label(settings_frame, text = "Settings Menu", font=("Arial", 12, "bold")).pack(pady=10)
-Button(settings_frame, text="back", command=go_back).pack(pady=5)
+#title
+Label(settings_frame, text = "Settings Menu", font=("Arial", 8,)).pack(pady=10, anchor="nw")
+
+#dark mode
+def recolor_widget(widget, bg, fg):
+    """"Recursively recolor widget + its children."""
+    try:
+        if isinstance(widget, Button):
+            widget.config(
+            bg=bg,
+            fg=fg,
+            activebackground=bg,
+            activeforeground=fg,
+            relief="flat",
+            borderwidth=2
+        )
+        else:
+            widget.config(bg=bg, fg=fg)
+    except:
+        try:
+            widget.config(bg=bg)
+        except:
+            pass
+    for child in widget.winfo_children():
+        recolor_widget(child, bg, fg)
+
+def toggle_dark_mode():
+    if dark_mode_var.get():
+        bg="#1E1E1E"
+        fg="white"
+    else: 
+        bg="SystemButtonFace"
+        fg="black"
+
+    window.config(bg=bg)
+    main_frame.config(bg=bg)
+    settings_frame.config(bg=bg)
+
+    recolor_widget(main_frame, bg, fg)
+    recolor_widget(settings_frame, bg, fg)
+
+Checkbutton(
+    settings_frame,
+    text="dark mode",
+    variable=dark_mode_var,
+    command=toggle_dark_mode
+).pack(pady=5)
+
+# back button
+Button(settings_frame, text="back", command=go_back).pack(pady=5, anchor="ne")
 
 
 settingsButton = Button(window, text="⚙", font=("Segoe UI Symbol", 10, "bold"), command=settings)
