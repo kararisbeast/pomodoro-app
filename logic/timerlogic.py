@@ -3,11 +3,11 @@ import storage.storage as storage
 
 storage.LoadData()
 
-workTime = storage.data["work_duration"] #amount of time to work
-breakTime = storage.data["break_duration"] #amount of time for break
-
 def TimerStart():
     #function to start the timer
+    workTime = storage.data["work_duration"] #amount of time to work
+    breakTime = storage.data["break_duration"] #amount of time for break
+
     try:
         if workTime > 0:
     #keep timer running
@@ -25,9 +25,10 @@ def TimerStart():
 def TimerStop():
     #function to stop timer
     try:
-        if workTime > 0:
-            storage.data["work_duration"] = workTime
+        if storage.data["work_duration"] > 0:
+            pass
         else:
             pass
     except:
         pass
+#add timerpause, timerunpause, timerrestart
