@@ -1,6 +1,6 @@
 #first push From Cole
 import storage.storage as storage
-
+import ui.timerscreen as timerscreen
 storage.LoadData()
 
 def TimerStart():
@@ -12,7 +12,7 @@ def TimerStart():
         if workTime > 0:
     #keep timer running
             #print work time on screen in timer
-            workTime =- 1
+            workTime -= 1
             
         elif workTime == 0:
     #if timerlength is 0 stop timer
